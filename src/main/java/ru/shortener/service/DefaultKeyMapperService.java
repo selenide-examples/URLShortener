@@ -2,6 +2,7 @@ package ru.shortener.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,8 +28,7 @@ public class DefaultKeyMapperService implements KeyMapperService {
     @Override
     public String getLink(String key) {
         Long id = converterService.keyToId(key);
-        if(map.get(id) == null) {
-            throw  new RuntimeException();
-        } else return map.get(id);
+        Assert.notNull(map.get(id), "Link with key non exists: " + key);
+        return map.get(id);
     }
 }

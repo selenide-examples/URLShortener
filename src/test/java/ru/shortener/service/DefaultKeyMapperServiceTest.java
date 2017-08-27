@@ -71,4 +71,10 @@ public class DefaultKeyMapperServiceTest {
         assertEquals(LINK_B, service.getLink(keyB));
         assertNotEquals(keyA,keyB);
     }
+
+    @Test(expected = java.lang.IllegalArgumentException.class)
+    public void clientCanNotTakeLinkIfKeyIsNotFoundInService() {
+        service.getLink(KEY);
+    }
+
 }
