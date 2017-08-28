@@ -29,7 +29,6 @@ public class LinkRepositoryTest extends AbstractRepositoryTest {
     private final static String LINK_1_TEXT = "http://www.ya.ru";
 
 
-
     @Test
     public void findOneExisting() {
         Optional<Link> got = repository.findOne(LINK_1_ID);

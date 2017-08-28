@@ -1,6 +1,6 @@
 package ru.shortener.service;
 
-interface KeyMapperService {
+public interface KeyMapperService {
      String add(String link);
      String getLink(String key);
 }
