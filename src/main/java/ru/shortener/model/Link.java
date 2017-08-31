@@ -1,6 +1,7 @@
 package ru.shortener.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,8 +10,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "links")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Link {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "links_sequence")

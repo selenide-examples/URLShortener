@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import ru.shortener.ShortenerApp;
+import ru.shortener.model.Link;
 import ru.shortener.service.KeyMapperService;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -35,11 +36,11 @@ public class RedirectControllerTest {
     private static final String BAD_PATH = "aaaaaaa";
     private static final int NOT_FOUND = 404;
 
-    @Autowired
-    KeyMapperService service;
+    @Mock
+    private KeyMapperService service;
 
     @Autowired
-    WebApplicationContext webApplicationContext;
+    private WebApplicationContext webApplicationContext;
     private MockMvc mockMvc;
 
     @Autowired
@@ -51,7 +52,9 @@ public class RedirectControllerTest {
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(webApplicationContext)
                 .build();
-        //Mockito.when(service.getLink(PATH)).thenReturn(HEADER_VALUE);
+        Link link = new Link();
+        link.setUrl(HEADER_VALUE);
+        Mockito.when(service.getLink(PATH)).thenReturn(link);
     }
 
     @Test

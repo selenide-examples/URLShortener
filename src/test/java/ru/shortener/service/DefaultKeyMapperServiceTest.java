@@ -66,9 +66,9 @@ public class DefaultKeyMapperServiceTest {
     @Test
     public void clientCanAddLink() {
         String keyA = service.add(LINK_A);
-        assertEquals(LINK_A, service.getLink(keyA));
+        assertEquals(LINK_A, service.getLink(keyA).getUrl());
         String keyB = service.add(LINK_B);
-        assertEquals(LINK_B, service.getLink(keyB));
+        assertEquals(LINK_B, service.getLink(keyB).getUrl());
         assertNotEquals(keyA,keyB);
     }
 

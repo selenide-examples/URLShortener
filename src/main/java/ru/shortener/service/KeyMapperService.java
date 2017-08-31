@@ -1,6 +1,8 @@
 package ru.shortener.service;
 
+import ru.shortener.model.Link;
+
 public interface KeyMapperService {
      String add(String link);
-     String getLink(String key);
+     Link getLink(String key);
 }
