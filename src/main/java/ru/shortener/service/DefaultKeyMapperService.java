@@ -2,36 +2,34 @@ package ru.shortener.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 import ru.shortener.model.Link;
+import ru.shortener.repository.LinkRepository;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.Optional;
 
 @Component
 public class DefaultKeyMapperService implements KeyMapperService {
 
-    private Map<Long, Link> map = new HashMap<>();
+    @Autowired
+    private KeyConverterService converterService;
 
     @Autowired
-    KeyConverterService converterService;
-
-    private AtomicLong sequence = new AtomicLong(10000000L);
+    private LinkRepository repository;
 
     @Override
     public String add(String url) {
-        Long id = sequence.getAndIncrement();
         Link link = new Link();
         link.setUrl(url);
-        map.put(id, link);
-        return converterService.idToKey(id);
+        return converterService.idToKey(repository.save(link).getId());
     }
 
     @Override
     public Link getLink(String key) {
         Long id = converterService.keyToId(key);
-        Assert.notNull(map.get(id), "Link with key non exists: " + key);
-        return map.get(id);
+        Optional<Link> res = repository.findOne(id);
+        if (!res.isPresent()) {
+            throw new RuntimeException("Link with key non exists: " + key);
+        }
+        return res.get();
     }
 }
