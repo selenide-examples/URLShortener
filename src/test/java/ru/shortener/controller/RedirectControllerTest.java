@@ -13,6 +13,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import ru.shortener.ShortenerApp;
@@ -68,5 +69,11 @@ public class RedirectControllerTest {
     public void controllerMustReturn404IfBadKey() throws Exception {
         mockMvc.perform(get(BAD_PATH))
                 .andExpect(status().is(NOT_FOUND));
+    }
+
+    @Test
+    public void homePageWorkPerfect() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(MockMvcResultMatchers.view().name("home"));
     }
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <title>URLShortener</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    </link>
+    <style>
+        #submit-button:hover {
+            cursor: pointer;
+        }
+
+        #input-block {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body style="padding: 50px; vertical-align: middle">
+<form action="add/html" method="post">
+    <div class="jumbotron">
+        <h1 class="text-center">URLShortener</h1>
+        <p class="text-center">Данный сервис делает длинные ссылки короткими.</p>
+        <div class="col-lg-12">
+            <div class="input-group" id="input-block">
+                <input type="text" class="form-control" placeholder="Вставьте сюда ссылку целиком (включая http://)" aria-label="Search for..." name="link"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-success" id="submit-button" type="submit">Go!</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

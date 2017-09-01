@@ -26,4 +26,9 @@ public class RedirectController {
         } else
             response.setStatus(404);
     }
+
+    @RequestMapping("/")
+    public String home() {
+        return "home";
+    }
 }

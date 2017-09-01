@@ -23,7 +23,9 @@ import ru.shortener.ShortenerApp;
 import ru.shortener.model.AddRequest;
 import ru.shortener.service.KeyMapperService;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @TestPropertySource(locations = "classpath:application-test.properties")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -63,11 +65,21 @@ public class AddControllerTest {
         AddRequest request = new AddRequest();
         request.setLink(LINK);
         String jsonInString = mapper.writeValueAsString(request);
-        mockMvc.perform(post("/add")
+        mockMvc.perform(post("/add/rest")
                 .content(jsonInString)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.key", Matchers.equalTo(KEY)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.link", Matchers.equalTo(LINK)));
 
+    }
+
+    @Test
+    public void whenUserAddLinkByFormHeTakesAWebPage() throws Exception {
+        mockMvc.perform(post("/add/html")
+                .param("link", LINK)
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString(KEY)))
+                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString(LINK)));
     }
 }
