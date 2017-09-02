@@ -1,4 +1,5 @@
-## URLShortener - сервис, который укорачивает длинные ссылки [![Build Status](https://travis-ci.org/romask17/URLShortener.svg?branch=master)](https://travis-ci.org/romask17/URLShortener)[![codecov](https://codecov.io/gh/romask17/URLShortener/branch/master/graph/badge.svg)](https://codecov.io/gh/romask17/URLShortener)
+## URLShortener - сервис, который укорачивает длинные ссылки 
+[![Build Status](https://travis-ci.org/romask17/URLShortener.svg?branch=master)](https://travis-ci.org/romask17/URLShortener)[![codecov](https://codecov.io/gh/romask17/URLShortener/branch/master/graph/badge.svg)](https://codecov.io/gh/romask17/URLShortener)
 
 Данное приложение представляет собой сервис по укорачиванию длинных ссылок, подобно https://goo.gl/ или https://vk.cc/  
 

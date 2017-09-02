@@ -1,0 +1,21 @@
+version: '2'
+services:
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=123456789
+    restart: always
+
+  urlshortener:
+    image: safeone17/urlshortener:latest
+    restart: always
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123456789
+      #- URL.SHORTENER.PREFIX=
+      #- SERVER_PORT=80
+    links:
+      - db
+    ports:
+      - "8080:8080"

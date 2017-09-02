@@ -7,7 +7,7 @@
     <groupId>ru.shortener</groupId>
     <artifactId>url-shortener</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>url-shortener</name>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -98,6 +98,6 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>${project.artifactId}</finalName>
     </build>
-
 </project>
