@@ -1,24 +1,28 @@
 package ru.shortener.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.shortener.model.AddRequest;
 import ru.shortener.model.AddResponse;
+import ru.shortener.properties.ShortenerConfigProperties;
 import ru.shortener.service.KeyMapperService;
 
 @Controller
 @RequestMapping("/add")
 public class AddController {
-    @Value("${url.shortener.prefix}")
-    private String prefix;
+
+    private final KeyMapperService service;
+    private final ShortenerConfigProperties config;
 
     @Autowired
-    private KeyMapperService service;
+    public AddController(KeyMapperService service, ShortenerConfigProperties config) {
+        this.service = service;
+        this.config = config;
+    }
 
-    @RequestMapping(value = "/rest", method = RequestMethod.POST)
+    @PostMapping(value = "/rest")
     @ResponseBody
     public AddResponse addRest(@RequestBody AddRequest request) {
         AddResponse response = new AddResponse();
@@ -27,11 +31,11 @@ public class AddController {
         return response;
     }
 
-    @RequestMapping(value = "/html", method = RequestMethod.POST)
-    public String addHtml(Model model, @RequestParam(value = "link", required = true) String link ) {
+    @PostMapping(value = "/html")
+    public String addHtml(Model model, @RequestParam(value = "link") String link) {
         AddResponse response = add(link);
         model.addAttribute("link", response.getLink());
-        model.addAttribute("keyed", prefix + response.getKey());
+        model.addAttribute("keyed", config.getPrefix() + response.getKey());
         return "result";
     }
 

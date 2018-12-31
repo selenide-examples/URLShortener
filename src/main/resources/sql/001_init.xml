@@ -1,0 +1,28 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <!-- Sequence -->
+    <changeSet id="1" author="romask">
+        <createSequence sequenceName="hibernate_sequence" startValue="100000"/>
+    </changeSet>
+
+    <!-- Tables -->
+    <changeSet id="2" author="romask">
+        <createTable tableName="links">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_link"/>
+            </column>
+            <column name="url" type="VARCHAR(1024)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="23" author="romask">
+        <tagDatabase tag="1.0"/>
+    </changeSet>
+</databaseChangeLog>

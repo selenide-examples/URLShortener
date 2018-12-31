@@ -10,12 +10,16 @@ import ru.shortener.service.KeyMapperService;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping()
+@RequestMapping
 public class RedirectController {
-    private final String HEADER_NAME = "Location";
+    private static final String HEADER_NAME = "Location";
+
+    private final KeyMapperService service;
 
     @Autowired
-    private KeyMapperService service;
+    public RedirectController(KeyMapperService service) {
+        this.service = service;
+    }
 
     @RequestMapping("/{key}")
     public void redirect(@PathVariable("key") String key, HttpServletResponse response) {

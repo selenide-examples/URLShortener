@@ -10,11 +10,15 @@ import java.util.Optional;
 @Component
 public class DefaultKeyMapperService implements KeyMapperService {
 
-    @Autowired
-    private KeyConverterService converterService;
+    private final KeyConverterService converterService;
+
+    private final LinkRepository repository;
 
     @Autowired
-    private LinkRepository repository;
+    public DefaultKeyMapperService(KeyConverterService converterService, LinkRepository repository) {
+        this.converterService = converterService;
+        this.repository = repository;
+    }
 
     @Override
     public String add(String url) {
@@ -26,7 +30,7 @@ public class DefaultKeyMapperService implements KeyMapperService {
     @Override
     public Link getLink(String key) {
         Long id = converterService.keyToId(key);
-        Optional<Link> res = repository.findOne(id);
+        Optional<Link> res = repository.findById(id);
         if (!res.isPresent()) {
             throw new RuntimeException("Link with key non exists: " + key);
         }

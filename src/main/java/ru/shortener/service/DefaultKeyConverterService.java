@@ -9,16 +9,16 @@ import java.util.stream.IntStream;
 @Component
 public class DefaultKeyConverterService implements KeyConverterService {
 
-    private char[] chars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890-_".toCharArray();
-    private Map<Character, Long> charToInt =
+    private static final char[] chars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890-_".toCharArray();
+    private static final Map<Character, Long> charToInt =
             IntStream.rangeClosed(0, chars.length - 1)
-                    .mapToObj(i -> Integer.valueOf(i))
-                    .collect(Collectors.toMap(i -> (chars[i]), i -> Long.valueOf(i)));
+                    .boxed()
+                    .collect(Collectors.toMap(i -> (chars[i]), Long::valueOf));
 
 
     @Override
     public String idToKey(long id) {
-        Long n = id;
+        long n = id;
         StringBuilder builder = new StringBuilder();
         while (n != 0L) {
             builder.append(chars[(int)(n % chars.length)]);

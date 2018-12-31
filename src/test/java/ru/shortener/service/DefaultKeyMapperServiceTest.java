@@ -2,9 +2,6 @@ package ru.shortener.service;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import ru.shortener.model.Link;
 import ru.shortener.repository.LinkRepository;
@@ -13,28 +10,27 @@ import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.mockito.Mockito.*;
 
 
 public class DefaultKeyMapperServiceTest {
 
-    @InjectMocks
-    private KeyMapperService service = new DefaultKeyMapperService();
-    private final String KEY = "aabbccdd";
-    private final String LINK_A = "http://example.com";
-    private final String LINK_B = "http://ya.ru";
+    private static final String KEY = "aabbccdd";
+    private static final String LINK_A = "http://example.com";
+    private static final String LINK_B = "http://ya.ru";
+    private static final String KEY_A = "abc";
+    private static final String KEY_B = "cde";
+    private static final Long ID_A = 10000000L;
+    private static final Long ID_B = 10000001L;
 
-    @Mock
-    private KeyConverterService converterService;
-
-    @Mock
-    private LinkRepository repository;
-    private final String KEY_A = "abc";
-    private final String KEY_B = "cde";
-    private final Long ID_A = 10000000L;
-    private final Long ID_B = 10000001L;
+    private KeyMapperService service;
 
     @Before
     public void init() {
+        LinkRepository repository = mock(LinkRepository.class);
+        KeyConverterService converterService = mock(DefaultKeyConverterService.class);
+        service = new DefaultKeyMapperService(converterService, repository);
+
         Link LINK_OBJ_A = new Link();
         LINK_OBJ_A.setUrl(LINK_A);
         LINK_OBJ_A.setId(ID_A);
@@ -51,16 +47,16 @@ public class DefaultKeyMapperServiceTest {
 
         MockitoAnnotations.initMocks(this);
 
-        Mockito.when(converterService.keyToId(KEY_A)).thenReturn(ID_A);
-        Mockito.when(converterService.idToKey(ID_A)).thenReturn(KEY_A);
-        Mockito.when(converterService.keyToId(KEY_B)).thenReturn(ID_B);
-        Mockito.when(converterService.idToKey(ID_B)).thenReturn(KEY_B);
+        when(converterService.keyToId(KEY_A)).thenReturn(ID_A);
+        when(converterService.idToKey(ID_A)).thenReturn(KEY_A);
+        when(converterService.keyToId(KEY_B)).thenReturn(ID_B);
+        when(converterService.idToKey(ID_B)).thenReturn(KEY_B);
 
-        Mockito.when(repository.findOne(Mockito.anyObject())).thenReturn(Optional.empty());
-        Mockito.when(repository.save(LINK_SAVE_A)).thenReturn(LINK_OBJ_A);
-        Mockito.when(repository.save(LINK_SAVE_B)).thenReturn(LINK_OBJ_B);
-        Mockito.when(repository.findOne(ID_A)).thenReturn(Optional.of(LINK_OBJ_A));
-        Mockito.when(repository.findOne(ID_B)).thenReturn(Optional.of(LINK_OBJ_B));
+        when(repository.findById(anyLong())).thenReturn(Optional.empty());
+        when(repository.save(LINK_SAVE_A)).thenReturn(LINK_OBJ_A);
+        when(repository.save(LINK_SAVE_B)).thenReturn(LINK_OBJ_B);
+        when(repository.findById(ID_A)).thenReturn(Optional.of(LINK_OBJ_A));
+        when(repository.findById(ID_B)).thenReturn(Optional.of(LINK_OBJ_B));
     }
 
     @Test
@@ -76,5 +72,4 @@ public class DefaultKeyMapperServiceTest {
     public void clientCanNotTakeLinkIfKeyIsNotFoundInService() {
         service.getLink(KEY);
     }
-
 }

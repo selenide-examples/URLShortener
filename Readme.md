@@ -1,8 +1,8 @@
 ## URLShortener - сервис, который укорачивает длинные ссылки 
-[![Build Status](https://travis-ci.org/romask17/URLShortener.svg?branch=master)](https://travis-ci.org/romask17/URLShortener) [![codecov](https://codecov.io/gh/romask17/URLShortener/branch/master/graph/badge.svg)](https://codecov.io/gh/romask17/URLShortener) [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Build Status](https://travis-ci.org/romask17/URLShortener.svg?branch=master)](https://travis-ci.org/romask17/URLShortener) [![codecov](https://codecov.io/gh/romask17/URLShortener/branch/master/graph/badge.svg)](https://codecov.io/gh/romask17/URLShortener) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Данное приложение представляет собой сервис по укорачиванию длинных ссылок, подобно https://goo.gl/ или https://vk.cc/. 
-Приложение самодостаточное, запускаться из командной строки и не требует отдельно установленных servlet контейнеров, application серверов и т.п. 
+Приложение самодостаточное, запускается из командной строки и не требует отдельно установленных servlet контейнеров, application серверов и т.п. 
 
 ## Используемые технологии и фреймворки:
 
@@ -12,7 +12,7 @@
 * `Thymeleaf` - html шаблонизатор
 * `Twitter Bootstrap` - для разметки
 
-Используется СУБД `PostgreSQL`. Для тестов используется `H2DB`
+Используется СУБД `H2`. Для тестов используется `H2DB`
 
 ### Автоматизация инфраструктуры:
   * `Maven`
@@ -26,7 +26,6 @@
   ```sh
   mvn clean package
   ```
-  Также понадобится `PostgreSQL`
   ### Запускаем:
   ```sh
   java -jar ./target/url-shortener.jar
