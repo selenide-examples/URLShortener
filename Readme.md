@@ -11,6 +11,7 @@
 * `Liquibase` - для управления миграциями базы данных
 * `Thymeleaf` - html шаблонизатор
 * `Twitter Bootstrap` - для разметки
+* [Selenide](https://github.com/selenide/selenide) для UI тестов
 
 Используется СУБД `H2`. Для тестов используется `H2DB`
 
