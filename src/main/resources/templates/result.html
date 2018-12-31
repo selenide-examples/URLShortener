@@ -27,11 +27,11 @@
             <strong>Ссылка уменьшена!</strong>
         </div>
     </div>
-    <p>Было - <a th:href="${link}" th:text="${link}"></a></p>
-    <p>Стало - <a th:href="${keyed}" th:text="${keyed}" target="_blank"></a></p>
+    <p>Было - <a id="old-link" th:href="${link}" th:text="${link}"></a></p>
+    <p>Стало - <a id="new-link" th:href="${keyed}" th:text="${keyed}" target="_blank"></a></p>
     <div class="col-lg-6 result">
-        <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">Скопируйте ссылку отсюда</span>
+        <div id="result-info" class="input-group">
+            <span class="input-group-addon" id="copy-link-text">Скопируйте ссылку отсюда</span>
             <input th:autofocus="${true}" type="text" class="form-control" readonly="readonly" id="result-input"
                    aria-describedby="basic-addon1" th:value="${keyed}"/>
         </div>
