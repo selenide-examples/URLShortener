@@ -22,7 +22,7 @@
     </changeSet>
 
 
-    <changeSet id="23" author="romask">
+    <changeSet id="3" author="romask">
         <tagDatabase tag="1.0"/>
     </changeSet>
 </databaseChangeLog>
