@@ -4,8 +4,6 @@ sudo:
 language: java
 jdk: oraclejdk8
 
-script: "mvn cobertura:cobertura"
-
 env:
   global:
     - COMMIT=${TRAVIS_COMMIT::7}
