@@ -1,5 +1,5 @@
 ## URLShortener - сервис, который укорачивает длинные ссылки 
-[![Build Status](https://travis-ci.org/romask17/URLShortener.svg?branch=master)](https://travis-ci.org/romask17/URLShortener) [![codecov](https://codecov.io/gh/romask17/URLShortener/branch/master/graph/badge.svg)](https://codecov.io/gh/romask17/URLShortener) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.org/eaxdev/URLShortener.svg?branch=master)](https://travis-ci.org/romask17/URLShortener) [![codecov](https://codecov.io/gh/romask17/URLShortener/branch/master/graph/badge.svg)](https://codecov.io/gh/romask17/URLShortener) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Данное приложение представляет собой сервис по укорачиванию длинных ссылок, подобно https://goo.gl/ или https://vk.cc/. 
 Приложение самодостаточное, запускается из командной строки и не требует отдельно установленных servlet контейнеров, application серверов и т.п. 
@@ -12,6 +12,7 @@
 * `Thymeleaf` - html шаблонизатор
 * `Twitter Bootstrap` - для разметки
 * [Selenide](https://github.com/selenide/selenide) для UI тестов
+* [TestContainers](https://github.com/testcontainers/testcontainers-java/) для запуска UI тестов в докер контейнере
 
 Используется СУБД `H2`. Для тестов используется `H2DB`
 

@@ -1,8 +1,13 @@
+dist: xenial
+
 sudo:
   required
 
 language: java
 jdk: oraclejdk8
+
+services:
+  - docker
 
 env:
   global:
@@ -19,4 +24,4 @@ after_success:
 
 notifications:
   email:
-    - romask17@ya.ru
+    - eaxdev@ya.ru
