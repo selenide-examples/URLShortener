@@ -6,5 +6,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class AddRequest {
+
     private String link;
 }

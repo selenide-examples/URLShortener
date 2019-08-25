@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping
 public class RedirectController {
+
     private static final String HEADER_NAME = "Location";
 
     private final KeyMapperService service;

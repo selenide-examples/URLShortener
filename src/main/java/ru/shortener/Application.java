@@ -7,8 +7,8 @@ import ru.shortener.properties.ShortenerConfigProperties;
 
 @EnableConfigurationProperties(ShortenerConfigProperties.class)
 @SpringBootApplication(scanBasePackages = "ru.shortener")
-public class ShortenerApp {
+public class Application {
     public static void main(String[] args) {
-        SpringApplication.run(ShortenerApp.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }

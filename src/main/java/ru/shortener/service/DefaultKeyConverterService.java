@@ -10,11 +10,11 @@ import java.util.stream.IntStream;
 public class DefaultKeyConverterService implements KeyConverterService {
 
     private static final char[] chars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890-_".toCharArray();
+
     private static final Map<Character, Long> charToInt =
             IntStream.rangeClosed(0, chars.length - 1)
                     .boxed()
                     .collect(Collectors.toMap(i -> (chars[i]), Long::valueOf));
-
 
     @Override
     public String idToKey(long id) {

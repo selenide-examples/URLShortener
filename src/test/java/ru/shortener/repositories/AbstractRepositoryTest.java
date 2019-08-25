@@ -4,13 +4,11 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
-import ru.shortener.ShortenerApp;
+import ru.shortener.Application;
 
-@TestPropertySource(locations = "classpath:application-test.properties")
 @TestExecutionListeners(DbUnitTestExecutionListener.class)
-@SpringBootTest(classes = ShortenerApp.class)
+@SpringBootTest(classes = Application.class)
 @DirtiesContext
 abstract class AbstractRepositoryTest extends AbstractTransactionalJUnit4SpringContextTests {
 }

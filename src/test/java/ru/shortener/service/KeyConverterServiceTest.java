@@ -1,14 +1,14 @@
 package ru.shortener.service;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Random;
 
+import static org.junit.Assert.assertEquals;
+
 public class KeyConverterServiceTest {
 
-
-    private KeyConverterService keyConverterService = new DefaultKeyConverterService();
+    private static KeyConverterService keyConverterService = new DefaultKeyConverterService();
 
     @Test
     public void givenIdMustBeConvertableBothWays() {
@@ -17,7 +17,7 @@ public class KeyConverterServiceTest {
             long initialId = Math.abs(random.nextLong());
             String key = keyConverterService.idToKey(initialId);
             long id = keyConverterService.keyToId(key);
-            Assert.assertEquals(initialId, id);
+            assertEquals(initialId, id);
         }
     }
 }

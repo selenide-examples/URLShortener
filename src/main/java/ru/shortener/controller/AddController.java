@@ -14,6 +14,7 @@ import ru.shortener.service.KeyMapperService;
 public class AddController {
 
     private final KeyMapperService service;
+
     private final ShortenerConfigProperties config;
 
     @Autowired

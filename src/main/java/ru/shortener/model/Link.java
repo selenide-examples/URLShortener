@@ -11,8 +11,10 @@ import javax.persistence.Table;
 @Table(name = "links")
 @Data
 public class Link {
+
     @Id
     @GeneratedValue
     private Long id;
+
     private String url = "";
 }

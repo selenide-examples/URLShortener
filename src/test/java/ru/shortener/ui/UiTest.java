@@ -15,11 +15,10 @@ import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.testcontainers.Testcontainers;
 import org.testcontainers.containers.BrowserWebDriverContainer;
-import ru.shortener.ShortenerApp;
+import ru.shortener.Application;
 import ru.shortener.ui.pages.MainPage;
 import ru.shortener.ui.pages.ResultPage;
 
@@ -30,9 +29,8 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.title;
 import static org.junit.Assert.assertEquals;
 
-@TestPropertySource(locations = "classpath:application-test.properties")
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {ShortenerApp.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = {Application.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ContextConfiguration(initializers = UiTest.Initializer.class)
 public class UiTest {
 
@@ -84,9 +82,8 @@ public class UiTest {
     public static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
         @Override
         public void initialize(ConfigurableApplicationContext applicationContext) {
-            applicationContext.addApplicationListener((ApplicationListener<WebServerInitializedEvent>) event -> {
-                Testcontainers.exposeHostPorts(event.getWebServer().getPort());
-            });
+            applicationContext.addApplicationListener((ApplicationListener<WebServerInitializedEvent>) event ->
+                    Testcontainers.exposeHostPorts(event.getWebServer().getPort()));
         }
     }
 }

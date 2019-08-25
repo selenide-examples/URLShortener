@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
 public class MainPage {
+
     public ResultPage enterUrl(String url) {
         $("#url-input").setValue(url).pressEnter();
         return page(ResultPage.class);

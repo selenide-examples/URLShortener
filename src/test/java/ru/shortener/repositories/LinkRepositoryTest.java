@@ -20,14 +20,17 @@ import static org.hamcrest.core.IsEqual.equalTo;
 public class LinkRepositoryTest extends AbstractRepositoryTest {
 
     @Autowired
-    LinkRepository repository;
+    private LinkRepository repository;
 
     final static String DATASET = "/datasets/link-table.xml";
-    private final static Long LINK_NOT_FOUND  = 1L;
-    private final static Long LINK_1_ID = 100500L;
-    private final static String LINK_TBS_TEXT = "http://www.ru";
-    private final static String LINK_1_TEXT = "http://www.ya.ru";
 
+    private final static Long LINK_NOT_FOUND  = 1L;
+
+    private final static Long LINK_1_ID = 100500L;
+
+    private final static String LINK_TBS_TEXT = "http://www.ru";
+
+    private final static String LINK_1_TEXT = "http://www.ya.ru";
 
     @Test
     public void findOneExisting() {
@@ -55,5 +58,4 @@ public class LinkRepositoryTest extends AbstractRepositoryTest {
         assertThat(linkList, hasSize(4));
         assertThat(linkSaved.getUrl(), equalTo(LINK_TBS_TEXT));
     }
-
 }
