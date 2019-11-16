@@ -1,4 +1,4 @@
-name: build app
+name: build_app
 
 on:
   push:
@@ -8,24 +8,33 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v1
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-      - name: submit coverage
+
+      - name: Submit coverage
         run: curl -s https://codecov.io/bash
-      - name: login into docker hub
+
+      - name: Login into docker hub
         run: docker login -u ${{ secrets.D_USER }} -p ${{ secrets.D_PASS }}
-      - name: set env variables
+
+      - name: Set env variables
         run: |
-          export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
-          export GIT_BRANCH="${GITHUB_REF/refs\/heads\//}"
-          echo 'print_branch'_$GIT_BRANCH
-          echo 'print_branch2'_${GITHUB_REF##*/}
+          export GIT_CURRENT_BRANCH=${GITHUB_REF##*/}
+          export TAG=`if [ "$GIT_CURRENT_BRANCH" == "master" ]; then echo "latest"; else echo $GIT_CURRENT_BRANCH; fi`
+          export DOCKER_IMAGE_NAME=eaxdev/urlshortener
+
+       - name: Build docker image
+         run: |
+           docker build -t $DOCKER_IMAGE_NAME:$TAG .
+
+      - name: Push docker image
+          run: |
+            docker push $DOCKER_IMAGE_NAME:$TAG
