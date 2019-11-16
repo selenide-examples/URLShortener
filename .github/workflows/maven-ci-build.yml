@@ -1,4 +1,4 @@
-name: build_app
+name: build
 
 on:
   push:
@@ -32,9 +32,7 @@ jobs:
           export DOCKER_IMAGE_NAME=eaxdev/urlshortener
 
       - name: Build docker image
-        run: |
-          docker build -t $DOCKER_IMAGE_NAME:$TAG .
+        run: docker build -t $DOCKER_IMAGE_NAME:$TAG .
 
       - name: Push docker image
-        run: |
-          docker push $DOCKER_IMAGE_NAME:$TAG
+        run: docker push $DOCKER_IMAGE_NAME:$TAG
