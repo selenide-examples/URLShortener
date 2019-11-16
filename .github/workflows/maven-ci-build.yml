@@ -32,5 +32,5 @@ jobs:
           export GIT_CURRENT_BRANCH=${GITHUB_REF##*/}
           export TAG=`if [ "$GIT_CURRENT_BRANCH" == "master" ]; then echo "latest"; else echo $GIT_CURRENT_BRANCH; fi`
           export DOCKER_IMAGE_NAME=eaxdev/urlshortener
-          docker build -t $DOCKER_IMAGE_NAME:$TAG
+          docker build -t $DOCKER_IMAGE_NAME:$TAG .
           docker push $DOCKER_IMAGE_NAME:$TAG
