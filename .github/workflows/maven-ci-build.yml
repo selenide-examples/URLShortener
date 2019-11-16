@@ -22,7 +22,7 @@ jobs:
       - name: submit coverage
         run: curl -s https://codecov.io/bash
       - name: login into docker hub
-        run: docker login -u ${{ secrets.$D_USER }} -p ${{ secrets.$D_PASS }}
+        run: docker login -u ${{ secrets.D_USER }} -p ${{ secrets.D_PASS }}
       - name: set env variables
         run: |
           export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
