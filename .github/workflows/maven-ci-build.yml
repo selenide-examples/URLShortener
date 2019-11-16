@@ -36,5 +36,5 @@ jobs:
           docker build -t $DOCKER_IMAGE_NAME:$TAG .
 
       - name: Push docker image
-          run: |
-            docker push $DOCKER_IMAGE_NAME:$TAG
+        run: |
+          docker push $DOCKER_IMAGE_NAME:$TAG
