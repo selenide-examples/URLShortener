@@ -18,19 +18,3 @@ jobs:
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1.0.3
-        with:
-          token: ${{secrets.CODECOV_TOKEN}}
-
-      - name: Login into docker hub
-        run: docker login -u ${{ secrets.D_USER }} -p ${{ secrets.D_PASS }}
-
-      - name: Build and push docker images
-        run: |
-          export GIT_CURRENT_BRANCH=${GITHUB_REF##*/}
-          export TAG=`if [ "$GIT_CURRENT_BRANCH" == "master" ]; then echo "latest"; else echo $GIT_CURRENT_BRANCH; fi`
-          export DOCKER_IMAGE_NAME=eaxdev/urlshortener
-          docker build -t $DOCKER_IMAGE_NAME:$TAG .
-          docker push $DOCKER_IMAGE_NAME:$TAG
