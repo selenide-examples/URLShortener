@@ -1,5 +1,6 @@
 ## URLShortener - сервис, который укорачивает длинные ссылки 
-[![Build Status](https://travis-ci.org/eaxdev/URLShortener.svg?branch=master)](https://travis-ci.org/eaxdev/URLShortener) [![codecov](https://codecov.io/gh/eaxdev/URLShortener/branch/master/graph/badge.svg)](https://codecov.io/gh/eaxdev/URLShortener) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://github.com/selenide-examples/URLShortener/workflows/build/badge.svg)](https://github.com/selenide-examples/URLShortener/actions)
+[![codecov](https://codecov.io/gh/eaxdev/URLShortener/branch/master/graph/badge.svg)](https://codecov.io/gh/eaxdev/URLShortener)
 
 Данное приложение представляет собой сервис по укорачиванию длинных ссылок, подобно https://goo.gl/ или https://vk.cc/. 
 Приложение самодостаточное, запускается из командной строки и не требует отдельно установленных servlet контейнеров, application серверов и т.п. 
