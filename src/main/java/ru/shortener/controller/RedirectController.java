@@ -22,7 +22,7 @@ public class RedirectController {
         this.service = service;
     }
 
-    @RequestMapping("/{key}")
+    @RequestMapping("/to/{key}")
     public void redirect(@PathVariable("key") String key, HttpServletResponse response) {
         Link link = service.getLink(key);
         if (link != null) {
