@@ -40,8 +40,8 @@ public class UiTest {
     private static final String URL = "http://yandex.ru";
 
     @Rule
-    public BrowserWebDriverContainer chrome =
-            new BrowserWebDriverContainer()
+    public BrowserWebDriverContainer<?> chrome =
+            new BrowserWebDriverContainer<>()
                     .withRecordingMode(BrowserWebDriverContainer.VncRecordingMode.RECORD_FAILING,
                             new File("build"))
                     .withCapabilities(DesiredCapabilities.chrome());

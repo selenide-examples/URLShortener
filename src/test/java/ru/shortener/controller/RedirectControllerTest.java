@@ -34,7 +34,7 @@ public class RedirectControllerTest {
 
     private static final String HEADER_VALUE = "http://example.com";
 
-    private static final String BAD_PATH = "aaaaaaa";
+    private static final String BAD_PATH = "/aaaaaaa";
 
     private static final int NOT_FOUND = 404;
 
@@ -43,7 +43,7 @@ public class RedirectControllerTest {
 
     @Test
     public void controllerMustRedirectUsWhenRequestIsSuccessful() throws Exception {
-        mockMvc.perform(get("/" + PATH))
+        mockMvc.perform(get("/to/" + PATH))
                 .andExpect(status().is(REDIRECT_STATUS))
                 .andExpect(header().string(HEADER_NAME, HEADER_VALUE));
     }
